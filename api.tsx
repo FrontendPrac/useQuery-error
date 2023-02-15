@@ -4,6 +4,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  increment,
   limit,
   orderBy,
   query,
@@ -65,6 +66,18 @@ export const getDatas = async () => {
   return response;
 };
 
+// export const getDatas = async () => {
+//   // const q = query(collection(dbService, 'post'), orderBy('createdAt', 'desc'));
+//   const response: any = [];
+
+//   const querySnapshot = await getDocs(collection(dbService, 'post'));
+//   querySnapshot.forEach((doc) => {
+//     response.push({ id: doc.id, ...doc.data() });
+//   });
+//   console.log('데이터를 불러왔습니다.');
+//   return response;
+// };
+
 //* 스토어에 데이터 추가하기
 export const addData: any = (data: any) => {
   console.log('data: ', data);
@@ -84,4 +97,12 @@ export const updataData: any = (data: any) => {
   console.log('data: ', data);
   updateDoc(doc(dbService, 'test', data.id), data);
   console.log('데이터가 수정되었습니다.');
+};
+
+//* 카운터 증가하기
+export const postCounter: any = (id: any) => {
+  console.log('id', id);
+  updateDoc(doc(dbService, 'test', id), {
+    clickCounter: increment(1),
+  });
 };

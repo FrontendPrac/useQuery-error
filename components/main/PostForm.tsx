@@ -5,8 +5,6 @@ import { useMutation } from 'react-query';
 import { addData } from '@/api';
 import Dropdown from '../mypage/Dropdown';
 
-//! postState 타입 해결
-//! imageUpload 타입 해결
 const PostForm = () => {
   //* 드롭다운 상태
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
@@ -26,6 +24,7 @@ const PostForm = () => {
     creator: authService.currentUser?.uid,
     city: city,
     town: town,
+    clickCounter: 0,
   };
 
   //* useMutation 사용해서 데이터 추가하기
